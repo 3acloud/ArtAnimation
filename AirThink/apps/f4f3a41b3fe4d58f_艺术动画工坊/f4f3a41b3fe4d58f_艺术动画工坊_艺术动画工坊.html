@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>艺术动画工坊</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23221927'/%3E%3Ccircle cx='10' cy='10' r='5' fill='%23c9a565'/%3E%3Ccircle cx='22' cy='10' r='5' fill='%23c9a565'/%3E%3Cpath d='M6 17h17v11H6zm17 3 6-3v11l-6-3' fill='%23c9a565'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--bg:#100c14;--bg2:#251727;--panel:#211923;--paper:#efe4cf;--muted:#b8a99e;--gold:#c6a265;--line:#705633;--red:#c36550;--input:#171219;--shadow:0 18px 60px #0005}
+:root[data-theme=light]{--bg:#f4eee3;--bg2:#e6d8d9;--panel:#fffbf2;--paper:#352431;--muted:#71616a;--gold:#87612f;--line:#b89a68;--red:#a94231;--input:#fffaf3;--shadow:0 15px 50px #56384b18}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:110px}body{margin:0;color:var(--paper);background:radial-gradient(ellipse at 75% 0,var(--bg2),transparent 65%),var(--bg);font:15px/1.65 "Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh}button,input,select,textarea{font:inherit}input,select,textarea{box-sizing:border-box;width:100%;background:var(--input);color:var(--paper);border:1px solid var(--line);border-radius:8px;padding:11px 13px;min-width:0}textarea{min-height:150px;resize:vertical}button{cursor:pointer;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--paper);padding:10px 16px;transition:background .18s,box-shadow .18s,border-color .18s}button:hover:not(:disabled),.frame:hover{border-color:var(--gold);box-shadow:0 0 22px #c6a26522}button:disabled{opacity:.42;cursor:not-allowed}button.primary{background:var(--gold);color:var(--bg);font-weight:700}button.accent{background:var(--red);color:#fff1de;border-color:var(--red)}button.small{padding:6px 10px;font-size:12px}button.icon{width:42px;height:42px;padding:0}a{color:var(--gold)}:focus-visible{outline:2px solid var(--gold);outline-offset:4px}[hidden]{display:none!important}h1,h2,h3,.brand{font-family:Georgia,"Songti SC","SimSun",serif;line-height:1.25;font-weight:500}h1{font-size:clamp(32px,5vw,58px);margin:0 0 20px}h2{font-size:27px;margin:0 0 18px}h3{font-size:20px;margin:0 0 12px}.muted{color:var(--muted)}.eyebrow{font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:15px}.gold{color:var(--gold)}.top-fixed{position:fixed;top:0;left:0;right:0;z-index:1001;background:var(--bg);border-bottom:1px solid var(--line)}
+nav{position:relative;z-index:1001;max-width:1440px;margin:auto;display:flex;align-items:center;gap:24px;padding:15px 32px;min-height:78px}.brand{display:flex;align-items:center;gap:12px;white-space:nowrap;font-size:23px;border:0;background:transparent;padding:0;color:var(--paper)}.brand i{color:var(--gold);font-size:24px}.nav-right{margin-left:auto;display:flex;gap:20px;align-items:center;flex:none}.nav-tabs{display:flex;gap:5px;white-space:nowrap}.nav-tabs button{border:0;background:transparent;color:var(--muted);white-space:nowrap;padding:8px 15px}.nav-tabs button[aria-current=page]{color:var(--gold);box-shadow:inset 0 -1px var(--gold);border-radius:0}.language{white-space:nowrap;padding:6px 10px}.hamburger{margin-left:auto;flex:none}.mobile-menu{position:absolute;left:0;right:0;top:100%;background:var(--panel);border-bottom:1px solid var(--gold);padding:12px 22px;box-shadow:var(--shadow)}.mobile-menu button{display:block;width:100%;text-align:left;border:0;background:transparent}.mobile-menu .language{border-top:1px solid var(--line);margin-top:6px;border-radius:0}
+main{max-width:1400px;margin:auto;padding:125px 38px 90px}.page-head{display:flex;justify-content:space-between;align-items:flex-start;gap:25px;margin-bottom:30px}.page-head p{margin:0;max-width:760px;color:var(--muted)}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;padding:35px 0 50px}.hero p{max-width:600px;font-size:16px;color:var(--muted)}.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.hero-screen{aspect-ratio:16/10;display:flex;flex-direction:column;justify-content:center;align-items:center;border:1px solid var(--line);outline:1px solid var(--line);outline-offset:-12px;background:radial-gradient(ellipse at center,#c6a26516,transparent 70%);box-shadow:var(--shadow);position:relative}.hero-screen i{font-size:62px;color:var(--gold);margin-bottom:18px}.hero-screen:before,.hero-screen:after{content:"";position:absolute;top:20px;bottom:20px;width:4px;border-top:2px solid var(--gold);border-bottom:2px solid var(--gold)}.hero-screen:before{left:20px}.hero-screen:after{right:20px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:18px}.stat{padding:20px 25px;border:1px solid var(--line);border-radius:8px;background:var(--panel)}.stat strong{font:36px Georgia;color:var(--gold);display:block}.mode-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:42px}.mode-stats button{text-align:left;padding:16px}.mode-stats strong{display:block;font:24px Georgia;color:var(--gold);margin-top:8px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:20px;margin:22px 0}.section-head h2{margin:0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.recent-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.frame{border:1px solid var(--line);padding:8px;background:var(--panel);border-radius:3px;min-width:0;box-shadow:var(--shadow);transition:.2s}.card-screen{position:relative;background:#100d12;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid #685132}.card-screen.portrait{aspect-ratio:9/16;max-height:310px;margin:auto}.card-screen video,.card-screen img{width:100%;height:100%;object-fit:contain}.card-screen .waiting{display:flex;flex-direction:column;gap:10px;align-items:center;color:#baa47f;text-align:center;padding:20px;font-size:13px}.card-screen .waiting i{font-size:28px}.card-body{padding:18px 12px 10px}.card-title{font:19px/1.45 Georgia,"Songti SC",serif;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin:0 0 12px}.card-body p{font-size:12px;color:var(--muted);overflow-wrap:anywhere;margin:7px 0}.tags{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0}.tag{font-size:11px;border:1px solid var(--line);padding:3px 7px;border-radius:3px;color:var(--gold)}.card-actions{display:flex;flex-wrap:wrap;gap:6px;border-top:1px solid var(--line);padding-top:12px;margin-top:12px}.playmark{position:absolute;right:8px;top:8px;background:#211923dd;color:#efdcae;border:1px solid #705633;padding:2px 7px;font-size:10px;border-radius:4px}.material-thumb{width:36px;height:36px;object-fit:cover;vertical-align:middle;margin-right:6px}.empty{padding:40px 20px;text-align:center;color:var(--muted);border:1px dashed var(--line);grid-column:1/-1}.studio-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.9fr);gap:28px;align-items:start}.panel{padding:26px;background:var(--panel);border:1px solid var(--line);border-radius:8px;min-width:0}.field{margin-bottom:25px}.field label,.field-title{display:block;margin-bottom:10px;color:var(--paper);font-weight:600}.field small{display:block;color:var(--muted);margin:8px 0;font-size:12px}.required{color:var(--red)}.mode-choices{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.choice{text-align:left;padding:13px 14px;position:relative;line-height:1.45}.choice i{margin-right:7px;color:var(--gold)}.choice.selected,.chip.selected{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 17%,var(--panel));box-shadow:inset 0 0 0 1px var(--gold)}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.chip{padding:7px 11px;font-size:12px}.syntax-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.syntax-choices button{font-size:12px}.two-columns{display:grid;grid-template-columns:1fr 1fr;gap:20px}.format-options{display:flex;gap:10px}.format-options button{flex:1;padding:14px 8px;text-align:center;font-size:12px}.format-icon{display:block;margin:0 auto 8px;border:1px solid var(--gold);width:36px;height:20px}.format-icon.vertical{width:16px;height:28px}.duration-presets{margin-top:8px}.upload-actions{display:flex;gap:7px;flex-wrap:wrap}.asset{margin:12px 0;overflow-wrap:anywhere}.asset img{display:block;max-width:100%;max-height:180px;border:1px solid var(--line);margin-bottom:10px}.recording{border:1px dashed var(--red);border-radius:7px;padding:12px;margin-top:14px}.recording .actions{margin-top:8px}.screen-panel{position:sticky;top:105px}.screen-panel .section-head{margin-top:0}.screen{background:#100d12;border:1px solid var(--line);outline:1px solid var(--line);outline-offset:5px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;overflow:hidden;margin:22px 5px;color:#e8dcc6}.screen.portrait{aspect-ratio:9/16;max-width:300px;margin-left:auto;margin-right:auto}.screen video{width:100%;height:100%;object-fit:contain}.screen-placeholder{text-align:center;color:#b8a99e;padding:20px}.screen-placeholder i{font-size:34px;display:block;margin-bottom:12px}.row-label{color:var(--muted);font-size:12px;margin-bottom:15px}.status{font-size:13px;color:var(--muted);overflow-wrap:anywhere;min-height:24px}.status.error{color:var(--red)}.spinner{display:inline-block;width:13px;height:13px;border:1px solid var(--gold);border-right-color:transparent;border-radius:50%;animation:spin 1s linear infinite;margin-right:7px}@keyframes spin{to{transform:rotate(360deg)}}.filterbar{display:grid;grid-template-columns:2fr repeat(4,1fr);gap:10px;margin-bottom:24px}.atlas-group{margin-bottom:22px}.atlas-group .chips{gap:11px}.atlas-group .chip{padding:11px 15px}.atlas-number{font:13px Georgia;color:var(--gold);margin-right:12px}.atlas-grammars{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.atlas-grammars button{padding:25px;text-align:left}.atlas-grammars i{display:block;font-size:23px;color:var(--gold);margin-bottom:16px}.error-banner{display:flex;align-items:center;gap:14px;background:var(--panel);border:1px solid var(--red);padding:14px 18px;margin-bottom:20px;overflow-wrap:anywhere}.error-banner span{flex:1}.modal-overlay{position:fixed;inset:0;background:#07050bd9;z-index:2001;display:flex;align-items:center;justify-content:center;padding:28px}.modal{background:var(--panel);border:1px solid var(--gold);border-radius:10px;width:min(100%,940px);max-height:calc(100dvh - 56px);overflow:auto;overscroll-behavior:contain;box-shadow:var(--shadow);padding:28px;position:relative}.modal:after{content:"";display:block;height:35px}.modal-head{display:flex;justify-content:space-between;align-items:start;gap:20px;margin-bottom:20px}.modal-head h2{overflow-wrap:anywhere;white-space:pre-wrap}.detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:22px}.detail-item{padding:12px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.detail-item dt{font-size:12px;color:var(--muted)}.detail-item dd{margin:5px 0 0}.markdown{overflow-wrap:anywhere;color:var(--paper);font-size:14px;line-height:1.8;margin-top:20px}.markdown h1{font-size:28px}.markdown h2{font-size:23px}.markdown h3{font-size:20px}.markdown img{max-width:100%;cursor:pointer}.markdown pre{padding:16px;background:var(--input);overflow:auto;border:1px solid var(--line);border-radius:6px}.markdown code{font-family:Consolas,monospace}.markdown blockquote{margin:15px 0;padding:8px 18px;border-left:3px solid var(--gold);background:var(--input)}.markdown .table-scroll{max-width:100%;overflow:auto}.markdown table{border-collapse:collapse;min-width:100%}.markdown td,.markdown th{border:1px solid var(--line);padding:8px}.markdown hr{border:0;border-top:1px solid var(--line)}iframe{width:100%;height:65vh;border:1px solid var(--line);background:#fff}.confirm{max-width:440px}.footer{border-top:1px solid var(--line);padding-top:22px;color:var(--muted);font-size:11px;letter-spacing:.18em;margin-top:60px}.lock-note{color:var(--gold);font-size:12px}
+@media(max-width:1100px){.grid,.recent-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.studio-layout{grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr)}.syntax-choices{grid-template-columns:repeat(2,1fr)}.filterbar{grid-template-columns:2fr 1fr 1fr}.mode-stats{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:780px){main{padding:105px 20px 160px}nav{padding:15px 20px}.brand{font-size:20px}.hero{grid-template-columns:1fr;gap:28px;padding-top:12px}.hero-screen{max-width:550px;width:100%;aspect-ratio:16/7}.hero-screen i{font-size:35px;margin-bottom:10px}.studio-layout{grid-template-columns:1fr}.screen-panel{position:static}.page-head{gap:15px}.page-head button{flex:none;font-size:12px}.panel{padding:20px}.stats{gap:8px}.stat{padding:14px}.stat strong{font-size:28px}.mode-stats{grid-template-columns:repeat(2,1fr)}.atlas-grammars{grid-template-columns:repeat(2,1fr)}.modal-overlay{padding:16px}.modal{padding:20px;max-height:calc(100dvh - 32px)}.modal:after{height:180px}.modal-overlay.edge{padding:0}.modal-overlay.edge .modal{border-radius:0;max-height:100dvh;min-height:100dvh}.filterbar{grid-template-columns:1fr 1fr}.filterbar input{grid-column:1/-1}.footer{margin-top:45px}.form-keyboard-space{height:var(--keyboard-space,70px)}}
+@media(max-width:470px){.grid,.recent-grid{grid-template-columns:1fr}.two-columns{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr 1fr}.stat{font-size:11px;padding:12px 9px}.mode-choices{grid-template-columns:1fr}.atlas-grammars{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}.brand{font-size:18px}.hero h1{font-size:40px}.section-head h2{font-size:23px}.actions button{font-size:13px}}
+.card-screen.portrait{width:min(100%,174px);max-height:none}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="top-fixed"><nav id="navigation" aria-label="主导航">
+<button id="brand" class="brand"><i class="fa-solid fa-film" aria-hidden="true"></i><span data-i18n="艺术动画工坊"></span></button>
+<div id="navRight" class="nav-right"><div id="navTabs" class="nav-tabs"></div><button id="languageDesktop" class="language" aria-label="切换语言">EN / 中</button></div>
+<button id="menuToggle" class="hamburger icon" hidden aria-expanded="false" aria-controls="mobileMenu" aria-label="菜单"><i class="fa-solid fa-bars"></i></button>
+<div id="mobileMenu" class="mobile-menu" hidden><div id="mobileTabs"></div><button id="languageMobile" class="language">EN / 中</button></div>
+</nav></div>
+<main>
+<div id="errorBanner" class="error-banner" role="alert" hidden><span id="errorText"></span><button id="errorRetry" data-i18n="重试"></button><button id="errorDismiss" class="icon" aria-label="关闭">×</button></div>
+<section id="page-home" class="page">
+<div class="hero"><div><div class="eyebrow">ART MOTION ATELIER · <span data-i18n="夜间放映厅"></span></div><h1 data-i18n="艺术动画工坊"></h1><p data-i18n="首页说明"></p><div class="actions"><button id="homeCreate" class="primary"><i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="开始创作"></span></button><button id="homeGallery" data-i18n="浏览作品廊"></button></div></div>
+<div class="hero-screen" aria-hidden="true"><i class="fa-solid fa-film"></i><span class="gold" data-i18n="让想象，开始运动"></span><span class="muted" style="font-size:11px;letter-spacing:.2em">THE ART OF MOVING IMAGES</span></div></div>
+<div id="homeStats" class="stats"></div><div id="modeStats" class="mode-stats"></div>
+<div class="section-head"><h2 data-i18n="最近作品"></h2><button id="viewAll" class="small" data-i18n="查看全部"></button></div><div id="recentWorks" class="grid recent-grid"></div>
+</section>
+<section id="page-studio" class="page" hidden>
+<div class="page-head"><div><div class="eyebrow">THE CREATIVE DESK</div><h1 data-i18n="创作台"></h1><p data-i18n="创作台说明"></p></div><button id="studioGallery" data-i18n="去作品廊"></button></div>
+<div class="studio-layout">
+<form id="artForm" class="panel">
+<fieldset id="artFormFields" style="padding:0;border:0;margin:0;min-width:0">
+<div class="field"><div class="field-title"><span data-i18n="创作模式"></span> <span class="required">*</span></div><div id="artForm-modeChoices" class="mode-choices"></div><input id="artForm-mode" type="hidden" name="创作模式"><small id="modeHint"></small></div>
+<div class="field"><label for="artForm-request"><span data-i18n="创作要求"></span> <span class="required">*</span></label><textarea id="artForm-request" name="创作要求" required></textarea></div>
+<div id="styleField" class="field"><label for="artForm-styleSearch" data-i18n="艺术风格"></label><input id="artForm-styleSearch" name="风格搜索" type="search"><input id="artForm-styles" name="艺术风格" type="hidden"><small data-i18n="风格说明"></small><div id="artForm-styleChoices" class="chips"></div></div>
+<div id="grammarField" class="field"><div class="field-title" data-i18n="动画语法"></div><input id="artForm-grammar" name="动画语法" type="hidden"><small data-i18n="语法说明"></small><div id="artForm-grammarChoices" class="syntax-choices"></div></div>
+<div class="two-columns"><div class="field"><label for="artForm-duration"><span data-i18n="时长（秒）"></span> <span class="required">*</span></label><input id="artForm-duration" name="时长（秒）" type="number" required min="0.01" step="any" inputmode="decimal"><div id="durationPresets" class="actions duration-presets"></div></div>
+<div class="field"><div class="field-title"><span data-i18n="画幅"></span> <span class="required">*</span></div><input id="artForm-format" name="画幅" type="hidden"><div id="artForm-formatChoices" class="format-options"></div></div></div>
+<div class="field"><div class="field-title" data-i18n="素材文件"></div><input id="artForm-material" name="素材文件" type="hidden"><div class="upload-actions"><button type="button" data-upload="SelectFile"><i class="fa-solid fa-paperclip"></i> <span data-i18n="选择文件"></span></button><button type="button" data-upload="SelectImage"><i class="fa-regular fa-image"></i> <span data-i18n="选择图片"></span></button><button type="button" data-upload="CapturePhoto"><i class="fa-solid fa-camera"></i> <span data-i18n="拍摄参考"></span></button></div><div id="materialPreview" class="asset"></div><button type="button" id="clearMaterial" class="small" data-i18n="清除素材"></button>
+<div id="recordingBar" class="recording" hidden><div><i class="fa-solid fa-microphone gold"></i> <span id="recordState"></span></div><div class="actions"><button type="button" id="recordStart" class="small" data-i18n="开始录入"></button><button type="button" id="recordPause" class="small" data-i18n="暂停"></button><button type="button" id="recordContinue" class="small" data-i18n="继续"></button><button type="button" id="recordCancel" class="small" data-i18n="取消"></button><button type="button" id="recordFinish" class="small accent" data-i18n="完成录入"></button></div></div>
+</div></fieldset>
+<div class="actions"><button id="submitArt" type="submit" class="primary"></button><button id="saveAs" type="button" data-i18n="另存并重新制作" hidden></button></div><p id="formStatus" class="status" role="status" aria-live="polite"></p><div class="form-keyboard-space"></div>
+</form>
+<aside class="panel screen-panel"><div class="section-head"><h2 data-i18n="成片放映"></h2><div class="actions"><button id="previousRecord" class="icon" aria-label="上一件">&lt;</button><button id="nextRecord" class="icon" aria-label="下一件">&gt;</button><button id="newArt" class="icon" aria-label="新作">+</button></div></div><div id="rowLabel" class="row-label"></div><div id="studioOutput"></div><div id="pollStatus" class="status" role="status" aria-live="polite"></div></aside>
+</div>
+</section>
+<section id="page-gallery" class="page" hidden>
+<div class="page-head"><div><div class="eyebrow">THE SCREENING COLLECTION</div><h1 data-i18n="作品廊"></h1><p data-i18n="作品廊说明"></p></div><button id="galleryCreate" class="primary">+ <span data-i18n="新作"></span></button></div>
+<div class="filterbar"><input id="gallerySearch" type="search" name="作品搜索"><select id="galleryMode" name="创作模式筛选"></select><select id="galleryFormat" name="画幅筛选"></select><select id="galleryStyle" name="艺术风格筛选"></select><select id="gallerySort" name="时长排序"></select></div><div class="section-head"><span id="galleryCount" class="muted"></span><button id="galleryRefresh" class="small"><i class="fa-solid fa-rotate"></i> <span data-i18n="刷新"></span></button></div><div id="galleryWorks" class="grid"></div><div class="actions" style="justify-content:center;margin-top:25px"><button id="galleryMore" data-i18n="查看更多" hidden></button></div>
+</section>
+<section id="page-atlas" class="page" hidden>
+<div class="page-head"><div><div class="eyebrow">A MAP OF VISUAL LANGUAGES</div><h1 data-i18n="风格图谱"></h1><p data-i18n="风格图谱说明"></p></div></div><div id="atlasStyles"></div><div class="section-head"><h2 data-i18n="动画语法图谱"></h2></div><div id="atlasGrammars" class="atlas-grammars"></div>
+</section>
+<div class="footer">ART MOTION ATELIER &nbsp; / &nbsp; <span data-i18n="夜间美术馆放映厅"></span></div>
+</main>
+<div id="modalRoot"></div>
+<script>
+        // 统一通信接口medium
+
+        function unescapeString(str) {
+          return str.replace(/\\x[0-9A-Fa-f]{2}|\\[nrt'"\\]/g, function(match) {
+            if (match.startsWith('\\x')) {
+              // 处理十六进制序列（例如 \x0A）
+              const hex = match.substring(2);
+              const charCode = parseInt(hex, 16);
+              return String.fromCharCode(charCode);
+            } else {
+              // 处理其他转义序列
+              switch (match) {
+                case '\\n': return '\n';
+                case '\\r': return '\r';
+                case '\\t': return '\t';
+                case '\\\'': return '\'';
+                case '\\"': return '"';
+                case '\\\\': return '\\';
+                default: return match; // 理论上不会发生，但保留以容错
+              }
+            }
+          });
+        }
+
+        function localAppBridge(request) {
+            // request是json文本如 {type:"表格", data:"数据源", payload:""} 或者 {type:"提交", data:"表", payload:"表单数据"}
+            // 确保全局回调存储对象存在
+            if (!window.__appBridgeCallbacks) window.__appBridgeCallbacks = {};
+            
+            // 注册全局响应接收函数（仅注册一次）
+            if (!window.__receiveAppResponse) {
+                window.__receiveAppResponse = function(eventId, response) {
+                    response = unescapeString(response);
+                    if (window.__appBridgeCallbacks[eventId]) {
+                        const { resolve, timeoutId } = window.__appBridgeCallbacks[eventId];
+                        clearTimeout(timeoutId);  // 清除超时计时器
+                        resolve(response);
+                        delete window.__appBridgeCallbacks[eventId];
+                    }
+                };
+            }
+
+            const requestStr = (typeof request === 'string') ? request : JSON.stringify(request);
+            
+            return new Promise((resolve, reject) => {
+                // 1. Android实现（同步）
+                if (window.AndroidBridge) {
+                    try {
+                        let response = window.AndroidBridge.processRequest(requestStr);
+                        response = unescapeString(response);
+                        resolve(response);
+                    } catch (e) {
+                        reject(`Android通信错误: ${e.message}`);
+                    }
+                }
+                // 2. iOS实现（异步回调）
+                else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.iosBridge) {
+                    try {
+          const eventId = "event_" + Date.now() + Math.random().toString(36).substr(2, 5);
+
+          // 存储resolve并设置超时
+          const timeoutId = setTimeout(() => {
+            if (window.__appBridgeCallbacks[eventId]) {
+              delete window.__appBridgeCallbacks[eventId];
+              reject("iOS响应超时");
+            }
+          }, 600000);
+
+          window.__appBridgeCallbacks[eventId] = { resolve, timeoutId };
+
+          const message = {
+              eventId: eventId,
+              request: requestStr,
+          };
+          window.webkit.messageHandlers.iosBridge.postMessage(JSON.stringify(message));
+                    } catch (e) {
+                        reject(`iOS通信错误: ${e.message}`);
+                    }
+                }
+                // 3. Windows WebView2实现（异步回调）
+                else if (window.chrome && window.chrome.webview) {
+                    try {
+                        const eventId = 'event_' + Date.now() + Math.random().toString(36).substr(2, 5);
+
+                        // 存储resolve并设置超时
+                        const timeoutId = setTimeout(() => {
+                            if (window.__appBridgeCallbacks[eventId]) {
+                                delete window.__appBridgeCallbacks[eventId];
+                                reject('Windows响应超时');
+                            }
+                        }, 600000);
+                        
+                        window.__appBridgeCallbacks[eventId] = { resolve, timeoutId };
+                        
+                        window.chrome.webview.postMessage(JSON.stringify({
+                            eventId: eventId,
+                            request: requestStr
+                        }));
+                    } catch (e) {
+                        reject(`Windows通信错误: ${e.message}`);
+                    }
+                }
+            });
+        }
+
+    function base64StringToFile(base64String, filename, mimeType = 'application/octet-stream') {
+      // 去掉可能存在的 base64 前缀（如 "data:image/png;base64,"）
+      const rawBase64 = base64String.includes(',') 
+        ? base64String.split(',')[1] 
+        : base64String;
+
+      // 解码 Base64 为二进制字符串
+      const binaryString = atob(rawBase64);
+      const bytes = new Uint8Array(binaryString.length);
+      for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+
+      // 创建 Blob，再转为 File
+      const blob = new Blob([bytes], { type: mimeType });
+      return new File([blob], filename, { type: mimeType });
+    }
+
+
+
+    async function callAppBridge(request)
+    {
+        if (window.AndroidBridge || (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.iosBridge) || (window.chrome && window.chrome.webview))
+        {
+          if (request['type'] === "CapturePhoto" || request['type'] === "FinishRecordVoice")
+          {
+            const filename = await localAppBridge(request);
+            if (filename != "")
+            {
+              const b64 = await localAppBridge({type:"FileToBase64", data:filename});
+              const file = base64StringToFile(b64, filename);
+
+              // 2. 上传文件到Flask服务端
+              const guidFileName = await uploadToFlaskA(file);
+    
+              // 3. 返回GUID文件名
+              return guidFileName;
+            }
+            return "";
+          }
+          if (request['type'] === "StartRecordVoice" || request['type'] === "PauseRecordVoice" || request['type'] === "ContinueRecordVoice" || request['type'] === "CancelRecordVoice")
+          {
+            await localAppBridge(request);
+            return "";
+          }
+        }
+
+        if (request['type'] === "ExportFile")
+        {
+          exportFileA(request['data'], 'http://' + window.location.hostname + ':3130/download/' + request['payload']);
+          return "";
+        }
+        if (request['type'] === "StartRecordVoice")
+        {
+          await StartRecordVoiceA();
+          return "";
+        }
+        if (request['type'] === "PauseRecordVoice")
+        {
+          await PauseRecordVoiceA();
+          return "";
+        }
+        if (request['type'] === "ContinueRecordVoice")
+        {
+          await ContinueRecordVoiceA();
+          return "";
+        }
+        if (request['type'] === "CancelRecordVoice")
+        {
+          await CancelRecordVoiceA();
+          return "";
+        }
+        // 定义类型到对应处理函数的映射
+        const HANDLERS = {
+          "SelectFile": selectFileA,
+          "SelectImage": selectImageA,
+          "CapturePhoto": capturePhotoA,
+          "FinishRecordVoice": FinishRecordVoiceA
+        };
+
+        // 检查请求类型是否在支持的映射中
+        if (request['type'] in HANDLERS) {
+          try {
+            // 1. 根据类型选择相应的处理函数获取文件
+            const file = await HANDLERS[request['type']]();
+    
+            // 2. 上传文件到Flask服务端
+            const guidFileName = await uploadToFlaskA(file);
+    
+            // 3. 返回GUID文件名
+            return guidFileName;
+          } catch (error) {
+            // 可以在这里添加错误处理逻辑，如日志记录
+            console.error(`处理${request['type']}时出错:`, error);
+          }
+  
+          // 所有失败情况返回空字符串
+          return "";
+        }
+
+
+
+        url = 'http://' + window.location.hostname + ':3130/request';
+        const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'SessionID': localStorage.getItem('airthink_session_id'),
+            'BaseName': encodeURIComponent("f4f3a41b3fe4d58f_艺术动画工坊")
+        },
+        body: JSON.stringify(request)
+        });
+  
+        if (!response.ok) {
+            throw new Error(`请求失败: ${response.status}`);
+        }
+  
+        return await response.text();
+    }
+
+async function exportFileA(title, url) {
+  try {
+    // 1. 获取文件内容 (需要服务器支持跨域 CORS)
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`下载失败: ${response.statusText}`);
+    }
+    const blob = await response.blob();
+
+    // 2. 尝试使用 File System Access API (Chrome/Edge 等现代浏览器支持)
+    // 这允许程序明确请求“另存为”对话框
+    if ('showSaveFilePicker' in window) {
+      try {
+        const handle = await window.showSaveFilePicker({
+          suggestedName: title,
+          types: [{
+            description: 'File',
+            accept: {
+              // 根据 blob 类型动态推断 MIME，或者直接使用通用流
+              [blob.type || 'application/octet-stream']: [] 
+            }
+          }]
+        });
+        
+        const writable = await handle.createWritable();
+        await writable.write(blob);
+        await writable.close();
+        return; // 保存成功，退出函数
+      } catch (err) {
+        // 如果用户在弹窗中点击了“取消”，或者API报错，则进入降级方案
+        if (err.name === 'AbortError') return; 
+        console.warn('File System Access API 失败，尝试降级方案:', err);
+      }
+    }
+
+    // 3. 降级方案：使用 <a> 标签下载
+    // 是否弹出选择框取决于用户的浏览器设置 ("下载前询问每个文件的保存位置")
+    const objectUrl = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = objectUrl;
+    link.download = title;
+    link.style.display = 'none';
+    
+    document.body.appendChild(link);
+    link.click();
+    
+    // 清理
+    setTimeout(() => {
+      document.body.removeChild(link);
+      URL.revokeObjectURL(objectUrl);
+    }, 100);
+
+  } catch (error) {
+    console.error('导出文件出错:', error);
+    alert('导出失败: ' + error.message);
+  }
+}
+
+/**
+ * 全局录音状态管理
+ */
+const VoiceRecorderState = {
+  mediaRecorder: null,
+  stream: null,
+  audioChunks: [],
+  lamejsUrl: 'https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js', // lamejs CDN地址
+  audioContext: null
+};
+
+/**
+ * 动态加载 lamejs 库
+ */
+function loadLamejs() {
+  return new Promise((resolve, reject) => {
+    if (window.lamejs) {
+      resolve(window.lamejs);
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = VoiceRecorderState.lamejsUrl;
+    script.onload = () => resolve(window.lamejs);
+    script.onerror = () => reject(new Error('无法加载 lamejs 库'));
+    document.body.appendChild(script);
+  });
+}
+
+/**
+ * 开始录音
+ */
+async function StartRecordVoiceA() {
+  // 1. 预加载 lamejs，确保结束时可用
+  await loadLamejs();
+
+  // 2. 清理旧状态
+  VoiceRecorderState.audioChunks = [];
+  
+  // 3. 获取麦克风权限
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    VoiceRecorderState.stream = stream;
+    
+    // 4. 初始化 MediaRecorder
+    // 即使浏览器默认录制为 WebM/Ogg，我们后续也会通过 AudioContext 转码
+    const recorder = new MediaRecorder(stream);
+    VoiceRecorderState.mediaRecorder = recorder;
+
+    recorder.ondataavailable = (event) => {
+      if (event.data.size > 0) {
+        VoiceRecorderState.audioChunks.push(event.data);
+      }
+    };
+
+    recorder.start();
+    console.log("录音开始");
+    
+  } catch (err) {
+    console.error("无法启动录音:", err);
+    throw new Error("无法访问麦克风或启动录音失败");
+  }
+}
+
+/**
+ * 暂停录音
+ */
+function PauseRecordVoiceA() {
+  if (VoiceRecorderState.mediaRecorder && VoiceRecorderState.mediaRecorder.state === 'recording') {
+    VoiceRecorderState.mediaRecorder.pause();
+    console.log("录音暂停");
+  }
+}
+
+/**
+ * 继续录音
+ */
+function ContinueRecordVoiceA() {
+  if (VoiceRecorderState.mediaRecorder && VoiceRecorderState.mediaRecorder.state === 'paused') {
+    VoiceRecorderState.mediaRecorder.resume();
+    console.log("录音继续");
+  }
+}
+
+/**
+ * 取消录音 (清理资源，不返回文件)
+ */
+function CancelRecordVoiceA() {
+  if (VoiceRecorderState.mediaRecorder) {
+    // 停止录制
+    if (VoiceRecorderState.mediaRecorder.state !== 'inactive') {
+      VoiceRecorderState.mediaRecorder.stop();
+    }
+    VoiceRecorderState.mediaRecorder = null;
+  }
+  
+  // 关闭流（关闭麦克风图标）
+  if (VoiceRecorderState.stream) {
+    VoiceRecorderState.stream.getTracks().forEach(track => track.stop());
+    VoiceRecorderState.stream = null;
+  }
+  
+  // 清空数据
+  VoiceRecorderState.audioChunks = [];
+  console.log("录音已取消");
+}
+
+/**
+ * 完成录音并返回 MP3 文件
+ * @returns {Promise<File>} 返回一个 MP3 格式的 File 对象
+ */
+function FinishRecordVoiceA() {
+  return new Promise((resolve, reject) => {
+    const recorder = VoiceRecorderState.mediaRecorder;
+    
+    if (!recorder) {
+      reject(new Error("未找到正在进行的录音"));
+      return;
+    }
+
+    // 定义停止后的处理逻辑
+    recorder.onstop = async () => {
+      try {
+        // 1. 停止所有轨道 (关闭麦克风)
+        if (VoiceRecorderState.stream) {
+          VoiceRecorderState.stream.getTracks().forEach(track => track.stop());
+          VoiceRecorderState.stream = null;
+        }
+
+        // 2. 将录制的块组合成一个 Blob (通常是 webm 或 ogg 格式)
+        const originalBlob = new Blob(VoiceRecorderState.audioChunks, { type: recorder.mimeType });
+        
+        // 3. 转码为 MP3
+        const mp3File = await convertBlobToMp3(originalBlob);
+        
+        // 4. 清理
+        VoiceRecorderState.audioChunks = [];
+        VoiceRecorderState.mediaRecorder = null;
+        
+        resolve(mp3File);
+      } catch (error) {
+        reject(error);
+      }
+    };
+
+    // 触发停止，进入 onstop 回调
+    if (recorder.state !== 'inactive') {
+      recorder.stop();
+    } else {
+      // 如果已经停止了（以此防守），手动触发 onstop 逻辑
+      recorder.onstop();
+    }
+  });
+}
+
+/**
+ * 内部辅助函数：将任意音频 Blob 转换为 MP3 File
+ */
+async function convertBlobToMp3(blob) {
+  // 1. 读取 Blob 为 ArrayBuffer
+  const arrayBuffer = await blob.arrayBuffer();
+  
+  // 2. 使用 AudioContext 解码音频 (将 WebM/Ogg 解码为 PCM 数据)
+  if (!VoiceRecorderState.audioContext) {
+    VoiceRecorderState.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  const audioBuffer = await VoiceRecorderState.audioContext.decodeAudioData(arrayBuffer);
+  
+  // 3. 准备 lamejs 编码器
+  const channels = 1; // 强制转为单声道，适合语音，且减小体积
+  const sampleRate = audioBuffer.sampleRate;
+  const kbps = 128;
+  
+  const mp3encoder = new lamejs.Mp3Encoder(channels, sampleRate, kbps);
+  
+  // 4. 获取 PCM 数据并转换 (Float32 -> Int16)
+  // 获取第一个声道的数据（如果是立体声，语音通常取单声道即可）
+  const samples = audioBuffer.getChannelData(0);
+  const sampleBlockSize = 1152; // lamejs 建议的块大小
+  const mp3Data = [];
+  
+  // 转换 Float32 (-1.0 到 1.0) 为 Int16 (-32768 到 32767)
+  const samplesInt16 = new Int16Array(samples.length);
+  for (let i = 0; i < samples.length; i++) {
+    // 简单的线性转换和钳位
+    let s = Math.max(-1, Math.min(1, samples[i]));
+    samplesInt16[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+  }
+  
+  // 5. 编码循环
+  for (let i = 0; i < samplesInt16.length; i += sampleBlockSize) {
+    const chunk = samplesInt16.subarray(i, i + sampleBlockSize);
+    const mp3buf = mp3encoder.encodeBuffer(chunk);
+    if (mp3buf.length > 0) {
+      mp3Data.push(mp3buf);
+    }
+  }
+  
+  // 6. 结束编码
+  const mp3buf = mp3encoder.flush();
+  if (mp3buf.length > 0) {
+    mp3Data.push(mp3buf);
+  }
+  
+  // 7. 生成文件
+  const timestamp = new Date().getTime();
+  const filename = `voice_record_${timestamp}.mp3`;
+  const mp3Blob = new Blob(mp3Data, { type: 'audio/mp3' });
+  
+  // 返回 File 对象
+  return new File([mp3Blob], filename, { type: 'audio/mp3', lastModified: new Date().getTime() });
+}
+
+/**
+ * 选择文件函数
+ * @returns {Promise<File>}
+ */
+function selectFileA() {
+  return new Promise((resolve, reject) => {
+    // 创建隐藏的文件输入元素
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.style.display = 'none';
+    
+    // 监听文件选择
+    fileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        resolve(file);
+      } else {
+        reject(new Error('没有选择文件'));
+      }
+      
+      // 清理DOM
+      document.body.removeChild(fileInput);
+    });
+    
+    // 监听取消选择
+    fileInput.addEventListener('cancel', () => {
+      reject(new Error('用户取消了文件选择'));
+      document.body.removeChild(fileInput);
+    });
+    
+    // 添加到DOM并触发点击
+    document.body.appendChild(fileInput);
+    fileInput.click();
+  });
+}
+
+function selectImageA() {
+  return new Promise((resolve, reject) => {
+    // 创建隐藏的文件输入元素
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*'; // 限制只选择图片文件
+    fileInput.style.display = 'none';
+    
+    // 监听文件选择
+    fileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        // 可选：进一步验证文件确实是图片
+        if (!file.type.startsWith('image/')) {
+          reject(new Error('选择的文件不是图片'));
+          return;
+        }
+        resolve(file);
+      } else {
+        reject(new Error('没有选择文件'));
+      }
+      
+      // 清理DOM
+      document.body.removeChild(fileInput);
+    });
+    
+    // 监听取消选择（注意：cancel事件在某些浏览器中可能不支持）
+    fileInput.addEventListener('cancel', () => {
+      reject(new Error('用户取消了文件选择'));
+      document.body.removeChild(fileInput);
+    });
+    
+    // 添加到DOM并触发点击
+    document.body.appendChild(fileInput);
+    fileInput.click();
+  });
+}
+
+function capturePhotoA() {
+  return new Promise((resolve, reject) => {
+    // 检查浏览器是否支持媒体设备API
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      reject(new Error('您的浏览器不支持拍照功能'));
+      return;
+    }
+    
+    // 创建一个隐藏的视频元素用于预览
+    const video = document.createElement('video');
+    video.style.display = 'none';
+    video.setAttribute('autoplay', '');
+    video.setAttribute('playsinline', '');
+    
+    // 创建一个canvas元素用于捕获照片
+    const canvas = document.createElement('canvas');
+    canvas.style.display = 'none';
+    const ctx = canvas.getContext('2d');
+    
+    // 创建拍照按钮和取消按钮的容器
+    const container = document.createElement('div');
+    container.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    `;
+    
+    // 创建视频预览容器
+    const videoContainer = document.createElement('div');
+    videoContainer.style.cssText = `
+      width: 100%;
+      max-width: 640px;
+      max-height: 70vh;
+      overflow: hidden;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    `;
+    
+    // 将视频放入容器中
+    video.style.cssText = `
+      width: 100%;
+      height: auto;
+      transform: scaleX(-1); /* 镜像翻转，让预览更自然 */
+    `;
+    
+    // 创建按钮容器
+    const buttonContainer = document.createElement('div');
+    buttonContainer.style.cssText = `
+      display: flex;
+      gap: 20px;
+    `;
+    
+    // 创建拍照按钮
+    const captureBtn = document.createElement('button');
+    captureBtn.textContent = '拍照';
+    captureBtn.style.cssText = `
+      padding: 12px 24px;
+      background: #007AFF;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+      cursor: pointer;
+    `;
+    
+    // 创建取消按钮
+    const cancelBtn = document.createElement('button');
+    cancelBtn.textContent = '取消';
+    cancelBtn.style.cssText = `
+      padding: 12px 24px;
+      background: #FF3B30;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+      cursor: pointer;
+    `;
+    
+    // 组装元素
+    videoContainer.appendChild(video);
+    buttonContainer.appendChild(captureBtn);
+    buttonContainer.appendChild(cancelBtn);
+    container.appendChild(videoContainer);
+    container.appendChild(buttonContainer);
+    document.body.appendChild(container);
+    document.body.appendChild(canvas);
+    
+    // 请求摄像头访问权限
+    navigator.mediaDevices.getUserMedia({
+      video: {
+        facingMode: 'environment', // 使用后置摄像头，如需前置摄像头改为'user'
+        width: { ideal: 1280 },
+        height: { ideal: 720 }
+      },
+      audio: false
+    })
+    .then(stream => {
+      // 将视频流连接到video元素
+      video.srcObject = stream;
+      
+      // 等待视频元数据加载
+      video.onloadedmetadata = () => {
+        // 设置canvas尺寸与视频一致
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        
+        // 开始播放视频
+        video.play().catch(e => {
+          reject(new Error('无法启动摄像头: ' + e.message));
+          cleanup();
+        });
+      };
+    })
+    .catch(error => {
+      reject(new Error('无法访问摄像头: ' + error.message));
+      cleanup();
+    });
+    
+    // 拍照功能
+    captureBtn.onclick = () => {
+      // 绘制当前视频帧到canvas
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      
+      // 将canvas转换为Blob对象（图片文件）
+      canvas.toBlob(blob => {
+        if (blob) {
+          // 创建File对象，类似于文件上传的文件
+          const file = new File([blob], `photo_${Date.now()}.jpg`, {
+            type: 'image/jpeg'
+          });
+          
+          // 清理并返回文件
+          cleanup();
+          resolve(file);
+        } else {
+          reject(new Error('拍照失败'));
+          cleanup();
+        }
+      }, 'image/jpeg', 0.9); // 0.9是JPEG质量参数
+    };
+    
+    // 取消功能
+    cancelBtn.onclick = () => {
+      reject(new Error('用户取消了拍照'));
+      cleanup();
+    };
+    
+    // 清理函数
+    const cleanup = () => {
+      // 停止所有视频流
+      if (video.srcObject) {
+        const tracks = video.srcObject.getTracks();
+        tracks.forEach(track => track.stop());
+      }
+      
+      // 移除DOM元素
+      if (container.parentNode) {
+        document.body.removeChild(container);
+      }
+      if (canvas.parentNode) {
+        document.body.removeChild(canvas);
+      }
+    };
+    
+    // 监听页面离开，确保清理资源
+    window.addEventListener('beforeunload', cleanup);
+  });
+}
+
+
+
+/**
+ * 上传文件到Flask服务端
+ * @param {File} file - 要上传的文件
+ * @returns {Promise<string>} - 返回GUID文件名
+ */
+async function uploadToFlaskA(file)
+{
+  // 创建FormData对象
+  const formData = new FormData();
+  formData.append('file', file);
+  
+  try {
+    // 发送到Flask服务端
+    const response = await fetch('http://' + window.location.hostname + ':3130/upload', {
+      method: 'POST',
+      body: formData,
+    });
+    
+    if (!response.ok) {
+      throw new Error(`上传失败: ${response.statusText}`);
+    }
+    
+    const result = await response.text();
+    return result;
+  }
+  catch (error)
+  {
+  }
+  return ""
+}    
+
+
+        // 更健壮的CSV解析器，能处理字段内逗号和换行符
+        function parseCSV(csvText) {
+            const rows = [];
+            let currentRow = [];
+            let currentField = '';
+            let inQuotes = false;
+            let i = 0;
+
+            while (i < csvText.length) {
+                const char = csvText[i];
+                
+                if (inQuotes) {
+                    if (char === '"') {
+                        // 检查下一个字符是否是双引号（转义）
+                        if (i + 1 < csvText.length && csvText[i + 1] === '"') {
+                            currentField += '"';
+                            i += 2; // 跳过两个双引号
+                        } else {
+                            // 结束引号
+                            inQuotes = false;
+                            i++;
+                        }
+                    } else {
+                        currentField += char;
+                        i++;
+                    }
+                } else {
+                    if (char === '"') {
+                        inQuotes = true;
+                        i++;
+                    } else if (char === ',') {
+                        // 字段结束
+                        currentRow.push(currentField);
+                        currentField = '';
+                        i++;
+                    } else if (char === '\r' || char === '\n') {
+                        // 处理换行符
+                        if (char === '\r' && i + 1 < csvText.length && csvText[i + 1] === '\n') {
+                            // 处理 \r\n
+                            i++;
+                        }
+                        
+                        // 行结束
+                        currentRow.push(currentField);
+                        currentField = '';
+                        rows.push(currentRow);
+                        currentRow = [];
+                        i++;
+                        
+                        // 跳过连续换行符
+                        while (i < csvText.length && (csvText[i] === '\r' || csvText[i] === '\n')) {
+                            i++;
+                        }
+                    } else {
+                        currentField += char;
+                        i++;
+                    }
+                }
+            }
+
+            // 处理最后一行
+            if (currentField !== '' || currentRow.length > 0) {
+                currentRow.push(currentField);
+                rows.push(currentRow);
+            }
+
+            return rows;
+        }
+
+        function setInnerHTMLWithScripts(element, html) {
+             element.innerHTML = html;
+             // 执行内联脚本
+             const scripts = element.querySelectorAll('script');
+             scripts.forEach(oldScript => {
+                 const newScript = document.createElement('script');
+                 newScript.text = oldScript.text;
+                 oldScript.parentNode.replaceChild(newScript, oldScript);
+             });
+         }
+
+        function base64DecodeUTF8(base64Str) {
+            // 使用atob解码Base64得到二进制字符串
+            const binaryStr = atob(base64Str);
+    
+            // 将二进制字符串转换为字节数组
+            const bytes = new Uint8Array(binaryStr.length);
+            for (let i = 0; i < binaryStr.length; i++) {
+                bytes[i] = binaryStr.charCodeAt(i);
+            }
+    
+            // 使用TextDecoder将字节数组解码为UTF-8字符串
+            const decoder = new TextDecoder('utf-8');
+            return decoder.decode(bytes);
+        }
+
+
+const SOURCE='艺术动画/默认表格',TABLE='艺术动画';
+const FIELDS=['创作要求','创作模式','艺术风格','动画语法','时长（秒）','画幅','素材文件','动画文件'];
+const MODES=['动画拆解复刻','艺术风格动画','口播艺术动画','长卷穿越动画','解说动画'],FORMATS=['横屏（1920×1080）','竖屏（1080×1920）'];
+const GROUPS=[
+['远古与古典',['洞穴岩画','埃及墓室壁画','阿提卡黑绘','庞贝马赛克','哥特泥金手抄本','敦煌壁画','中国皮影']],
+['文艺复兴至近代',['文艺复兴晕涂','伦勃朗明暗','印象派','莫奈睡莲与日本桥','修拉点彩','梵高','克里姆特金色时期','慕夏新艺术']],
+['现代先锋',['分析立体主义','毕加索蓝色时期','蒙克表现主义','达利超现实','马蒂斯剪纸','包豪斯','俄国构成主义','中国水墨写意']],
+['大众与当代',['利希滕斯坦波普','凯斯·哈林','草间弥生波点','霍珀美国现实主义','吉卜力水彩背景','新海诚光影','1930 橡皮管卡通','8-bit 像素','早期光追 CGI','当代扁平插画','蒸汽波/赛博霓虹','漫威 Kirby 银河时代']]];
+const STYLES=GROUPS.flatMap(g=>g[1]);
+const GRAMMARS=['Kurzgesagt 扁平科普','Vox 拼贴','白板手绘（RSA）','故事型简笔角色','动态文字','3Blue1Brown','发布会界面','财经图表','讲解员式财经科普'];
+const ICONS=['fa-clapperboard','fa-palette','fa-microphone','fa-scroll','fa-chalkboard-user'];
+const EN={
+'艺术动画工坊':'Art Motion Atelier','首页':'Home','创作台':'Creative Desk','作品廊':'Gallery','风格图谱':'Style Atlas',
+'首页说明':'Choose a creative mode, art style and animation language. Turn an idea, a reference or a voice track into a playable art film with the task agent.',
+'创作台说明':'Describe your vision, choose an animation language and a frame. References are optional. The agent develops characters and styles; this desk submits your brief and awaits the film.',
+'作品廊说明':'Every work is a visual experiment ready to play again.','风格图谱说明':'Choose a way of seeing, then begin creating.',
+'夜间放映厅':'AFTER HOURS CINEMA','夜间美术馆放映厅':'THE AFTER HOURS ART CINEMA','让想象，开始运动':'Set your imagination in motion',
+'开始创作':'Start creating','浏览作品廊':'Browse the gallery','最近作品':'Recent works','查看全部':'View all','去作品廊':'Go to gallery',
+'创作模式':'Creative mode','创作要求':'Creative brief','艺术风格':'Art styles','动画语法':'Animation language','时长（秒）':'Duration (seconds)','画幅':'Frame','素材文件':'Reference file','动画文件':'Animation file',
+'风格说明':'Select multiple styles, or leave blank for the agent to choose from your brief.','语法说明':'Optional. Click a selected language again to clear it.',
+'选择文件':'Choose file','选择图片':'Choose image','拍摄参考':'Capture reference','清除素材':'Clear reference','开始录入':'Record','暂停':'Pause','继续':'Resume','取消':'Cancel','完成录入':'Finish recording',
+'另存并重新制作':'Save as a new film','成片放映':'Film screening','新作':'New work','刷新':'Refresh','查看更多':'Show more','动画语法图谱':'Animation language atlas',
+'作品总数':'Total works','横屏银幕数':'Landscape screens','竖屏银幕数':'Portrait screens','全部模式':'All modes','全部画幅':'All frames','全部风格':'All styles','表顺序':'Table order','时长升序':'Shortest first','时长降序':'Longest first',
+'搜索创作要求':'Search creative briefs','搜索风格':'Search styles','写下你的画面意图…':'Describe the images you imagine…','开始制作':'Make the film','保存修改':'Save changes',
+'播放':'Play','查看详情':'View details','编辑':'Edit','下载':'Download','再创作':'Remix','删除':'Delete','关闭':'Close','浏览器打开':'Open in browser','下载成片':'Download film','编辑此作':'Edit this work','重试':'Retry',
+'可播放':'Ready to play','暗房显影中':'Developing in the darkroom','暂无作品':'No works yet.','没有匹配的作品':'No matching works.','等待一部新作品':'Waiting for your next film','未生成，无法播放或下载':'Not ready to play or download yet',
+'远古与古典':'Ancient & classical','文艺复兴至近代':'Renaissance & early modern','现代先锋':'Modern avant-garde','大众与当代':'Popular & contemporary',
+'动画拆解复刻':'Animation reconstruction','艺术风格动画':'Art style animation','口播艺术动画':'Voice-led art animation','长卷穿越动画':'Panoramic journey','解说动画':'Explainer animation',
+'横屏（1920×1080）':'Landscape (1920×1080)','竖屏（1080×1920）':'Portrait (1080×1920)',
+'洞穴岩画':'Cave painting','埃及墓室壁画':'Egyptian tomb murals','阿提卡黑绘':'Attic black-figure','庞贝马赛克':'Pompeian mosaic','哥特泥金手抄本':'Gothic illuminated manuscript','敦煌壁画':'Dunhuang murals','中国皮影':'Chinese shadow puppetry',
+'文艺复兴晕涂':'Renaissance sfumato','伦勃朗明暗':'Rembrandt chiaroscuro','印象派':'Impressionism','莫奈睡莲与日本桥':'Monet: lilies & Japanese bridge','修拉点彩':'Seurat pointillism','梵高':'Van Gogh','克里姆特金色时期':'Klimt golden period','慕夏新艺术':'Mucha Art Nouveau',
+'分析立体主义':'Analytical cubism','毕加索蓝色时期':'Picasso blue period','蒙克表现主义':'Munch expressionism','达利超现实':'Dalí surrealism','马蒂斯剪纸':'Matisse cut-outs','包豪斯':'Bauhaus','俄国构成主义':'Russian constructivism','中国水墨写意':'Chinese expressive ink',
+'利希滕斯坦波普':'Lichtenstein pop art','凯斯·哈林':'Keith Haring','草间弥生波点':'Yayoi Kusama dots','霍珀美国现实主义':'Hopper American realism','吉卜力水彩背景':'Ghibli watercolor backgrounds','新海诚光影':'Makoto Shinkai light','1930 橡皮管卡通':'1930s rubber-hose cartoon','8-bit 像素':'8-bit pixel art','早期光追 CGI':'Early ray-traced CGI','当代扁平插画':'Contemporary flat illustration','蒸汽波/赛博霓虹':'Vaporwave / cyber neon','漫威 Kirby 银河时代':'Marvel Kirby cosmic era',
+'Kurzgesagt 扁平科普':'Kurzgesagt flat science','Vox 拼贴':'Vox collage','白板手绘（RSA）':'RSA whiteboard','故事型简笔角色':'Story-led simple characters','动态文字':'Kinetic typography','3Blue1Brown':'3Blue1Brown','发布会界面':'Keynote interface','财经图表':'Financial charts','讲解员式财经科普':'Presenter-led financial education',
+'复刻提示':'A reference file is required for reconstruction.','风格提示':'Choose art styles, or let the agent interpret your brief.','口播提示':'A silent visual track may be aligned to your narration. Specify timing cues in the brief.','长卷提示':'Pay special attention to frame and duration. Multiple styles are welcome.','解说提示':'Choose an animation language for your explanation.',
+'就绪，可开始录音':'Ready to record','录音中':'Recording','已暂停':'Paused','请先完成或取消录音':'Finish or cancel your recording first.',
+'请填写创作要求':'Please enter a creative brief.','请选择创作模式':'Please choose a creative mode.','请填写大于0的时长':'Please enter a duration greater than zero.','请选择画幅':'Please choose a frame.','复刻模式必须上传参考素材':'Reconstruction requires a reference file.',
+'正在提交…':'Submitting…','正在保存…':'Saving…','修改已保存':'Changes saved.','暗房显影中——正在铺陈风格、绘制运镜并合成可播放短片':'Developing in the darkroom — composing the style, camera moves and playable film.',
+'等待超时，请稍后到作品廊查看。不会自动再次提交。':'Waiting timed out. Check the gallery later. The work will not be submitted again.',
+'等待失败，请重试轮询或稍后到作品廊查看':'Waiting failed. Retry polling or check the gallery later.',
+'制作完成':'Your film is ready.','读取中…':'Loading…','确定删除此作品？此操作不能撤销。':'Delete this work? This cannot be undone.',
+'无素材':'No reference','无动画语法':'No animation language','无指定风格':'No specified styles','新建作品':'New work','当前记录':'Current record','条作品':'works',
+'Markdown组件加载失败，请重试':'Markdown libraries failed to load. Please retry.','媒体加载失败，重试':'Media failed to load. Retry.','加载失败':'Loading failed','此页面由宿主应用打开时支持关闭':'Closing this page is supported inside the host app.',
+'操作未完成，请重试':'The action did not finish. Please retry.','正在等待成片，表单暂时锁定':'Waiting for the film. The form is temporarily locked.','参考文件':'Reference file','秒':'s','上一件':'Previous work','下一件':'Next work','菜单':'Menu','切换语言':'Switch language',
+'录音接口已完成，但未返回文件':'Recording finished, but no file was returned.','部分字段可能已保存；重试将继续写入当前记录':'Some fields may have been saved. Retrying will write to the current record again.'
+};
+const $=id=>document.getElementById(id);
+const state={lang:'cn',page:'home',history:[],row:0,count:0,records:[],recent:[],home:null,styles:new Set(),busy:false,polling:false,pollToken:0,pollTimer:null,record:'idle',dialogs:[],limit:12,loadSeq:0,retry:null,film:'',filmFrame:'',loadingRecord:false};
+const CN={
+'首页说明':'选定创作模式、艺术风格与动画语法，把一句话、一张参考或一段口播，交给任务智能体做成可播放的风格短片。',
+'创作台说明':'写下画面意图，选好语法与画幅，参考素材可选。新角色或风格方向由后台智能体处理，这里只负责提交并等候成片。',
+'作品廊说明':'每一件都是一帧可重放的风格实验。',
+'风格图谱说明':'先挑一种目光，再进创作台。',
+'风格说明':'风格可多选；未选择时，智能体会根据创作要求确定。',
+'语法说明':'可不选，再次点击已选语法可取消选择。',
+'复刻提示':'必须上传参考素材，智能体将拆解并复刻参考动画。',
+'风格提示':'选择艺术风格；未选时智能体按创作要求确定。',
+'口播提示':'成片可以是按时间轴对齐的无声画面轨，请在创作要求里写清口播时间点。',
+'长卷提示':'请重点确定画幅与时长，艺术风格可多选。',
+'解说提示':'选择动画语法，让画面配合解说的逻辑与节奏。'
+};
+const t=s=>state.lang==='en'?(EN[s]||s):(CN[s]||s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function storageRead(key){try{return localStorage.getItem(key)}catch{return null}}
+function detectLanguage(){let l='cn';try{if(navigator.languages?.length)l=navigator.languages.some(v=>/^zh(?:-|$)/i.test(v))?'cn':'en'}catch{}const q=new URLSearchParams(location.search).get('lang');if(q==='cn'||q==='en')l=q;const saved=storageRead('iThinkAir_UiLanguage');if(saved)l=saved==='en'?'en':'cn';return l}
+function safeLink(file,download=false){return 'https://www.ithinkair.com:3031/'+(download?'download/':'private/')+encodeURIComponent(String(file).trim())}
+function external(file,download=false){window.open(safeLink(file,download),'_blank','noopener,noreferrer')}
+function imageFile(s){return /\.(png|jpe?g|gif|webp|bmp|svg|avif|heic)$/i.test(String(s).trim())}
+function extractFile(text){
+const s=String(text??'').trim();if(!s)return '';
+const url=s.match(/^https:\/\/www\.ithinkair\.com:3031\/(?:private|download)\/([^?#\s]+)(?:[?#]\S*)?$/i);
+if(url){try{return decodeURIComponent(url[1])}catch{return url[1]}}
+if(/^[^\r\n/\\<>:"|?*]+\.mp4$/i.test(s))return s;
+if(/^\{?[0-9a-f]{8}-[0-9a-f-]{27,}\}?(?:\.[a-z0-9]+)?$/i.test(s))return s;
+if(/^[^\s/\\<>:"|?*]+\.(?:webm|mov|m4v|html?)$/i.test(s))return s;
+const link=s.match(/https:\/\/www\.ithinkair\.com:3031\/(?:private|download)\/([^)\s"'<>]+\.mp4)/i);
+if(link){try{return decodeURIComponent(link[1])}catch{return link[1]}}return '';
+}
+function tags(value){return String(value??'').split(/[,，]/).map(v=>v.trim()).filter(Boolean)}
+async function bulletStyles(row,fallback){
+try{const raw=await callAppBridge({type:'GetCellBullet',data:SOURCE,payload:'艺术风格/'+row});if(!String(raw).trim())return tags(fallback);
+let values;try{values=JSON.parse(raw)}catch{}
+if(Array.isArray(values)){const out=values.filter(v=>typeof v==='string').map(v=>v.trim()).filter(Boolean);if(out.length)return out}
+const parsed=String(raw).split(/\r?\n|[,，]/).map(v=>v.replace(/^\s*[-*]\s*/,'').trim()).filter(Boolean);
+return parsed.length?parsed:tags(fallback);
+}catch{return tags(fallback)}}
+function showError(error,retry){state.retry=retry;$('errorText').textContent=t('加载失败')+': '+String(error?.message||error);$('errorBanner').hidden=false;$('errorRetry').hidden=!retry}
+function clearError(){$('errorBanner').hidden=true;state.retry=null}
+async function run(work,retry=work){try{await work()}catch(e){showError(e,retry)}}
+async function api(type,payload,data=SOURCE){return await callAppBridge({type,data,...(payload===undefined?{}:{payload})})}
+async function countRecords(){const text=await api('GetRecordCount');if(!/^\d+$/.test(String(text).trim()))throw new Error(t('操作未完成，请重试'));state.count=Number(text);return state.count}
+async function fetchRecords(){const csv=await api('GetTableCSV',FIELDS.join(','));return parseCSV(csv).map((cells,i)=>{const r={row:i+1};FIELDS.forEach((f,j)=>r[f]=cells[j]||'');return r})}
+async function readRecord(row){const record={row};for(const field of FIELDS)record[field]=await api('GetCellValue',field+'/'+row);record.styleTags=await bulletStyles(row,record['艺术风格']);return record}
+function setMenu(open){$('mobileMenu').hidden=!open;$('menuToggle').setAttribute('aria-expanded',String(open))}
+function fitNav(){const nav=$('navigation'),right=$('navRight');right.hidden=false;$('menuToggle').hidden=true;const need=$('brand').getBoundingClientRect().width+right.getBoundingClientRect().width+100;if(need>nav.clientWidth){right.hidden=true;$('menuToggle').hidden=false}else setMenu(false)}
+function updateNav(){const pages=[['home','首页'],['studio','创作台'],['gallery','作品廊'],['atlas','风格图谱']];
+const html=pages.map(([id,label])=>'<button type="button" data-page="'+id+'" '+(state.page===id?'aria-current="page"':'')+'>'+esc(t(label))+'</button>').join('');
+$('navTabs').innerHTML=html;$('mobileTabs').innerHTML=html;requestAnimationFrame(fitNav)}
+function updateLanguage(){
+document.documentElement.lang=state.lang==='cn'?'zh-CN':'en';document.title=t('艺术动画工坊');
+document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n));
+$('gallerySearch').placeholder=t('搜索创作要求');$('gallerySearch').setAttribute('aria-label',t('搜索创作要求'));
+$('artForm-styleSearch').placeholder=t('搜索风格');$('artForm-request').placeholder=t('写下你的画面意图…');
+['galleryMode','galleryFormat','galleryStyle','gallerySort'].forEach(id=>$(id).setAttribute('aria-label',t({'galleryMode':'创作模式','galleryFormat':'画幅','galleryStyle':'艺术风格','gallerySort':'时长（秒）'}[id])));
+[['previousRecord','上一件'],['nextRecord','下一件'],['newArt','新作'],['menuToggle','菜单'],['languageDesktop','切换语言'],['languageMobile','切换语言'],['brand','艺术动画工坊'],['navigation','菜单'],['errorDismiss','关闭']].forEach(([id,label])=>$(id).setAttribute('aria-label',t(label)));
+$('languageDesktop').textContent=state.lang==='cn'?'EN / 中':'中 / EN';$('languageMobile').textContent=state.lang==='cn'?'English / 中文':'中文 / English';
+updateNav();renderChoices();renderAtlas();renderFilters();if(state.home)renderHome();renderGallery();updateRecordControls();updateRecording();renderMaterial();renderOutput($('studioOutput'),state.film,state.filmFrame||$('artForm-format').value);
+}
+function switchLanguage(){state.lang=state.lang==='cn'?'en':'cn';try{localStorage.setItem('iThinkAir_UiLanguage',state.lang)}catch{}setMenu(false);updateLanguage()}
+async function navigate(page,remember=true){
+setMenu(false);if(page!==state.page){if(remember)state.history.push({page:state.page,scroll:window.scrollY});state.page=page;document.querySelectorAll('.page').forEach(el=>el.hidden=el.id!=='page-'+page);window.scrollTo(0,0);updateNav()}
+const seq=++state.loadSeq;
+await run(async()=>{if(page==='home')await loadHome(seq);if(page==='gallery')await loadGallery(seq);if(page==='studio'){await countRecords();updateRecordControls()}if(page==='atlas')renderAtlas()},()=>navigate(page,false));
+}
+function airBack(){if(state.dialogs.length){closeDialog();return 'false'}if(!$('mobileMenu').hidden){setMenu(false);return 'false'}const previous=state.history.pop();if(!previous)return 'true';const p=navigate(previous.page,false);requestAnimationFrame(()=>window.scrollTo(0,previous.scroll));p.then(()=>window.scrollTo(0,previous.scroll));return 'false'}
+window.airBack=airBack;
+function placeholder(text){return '<div class="empty">'+esc(t(text))+'</div>'}
+async function loadHome(seq){$('recentWorks').innerHTML=placeholder('读取中…');
+const [count,frames,modes,records]=await Promise.all([api('GetRecordCount'),api('GetTableCSV','画幅'),api('GetTableCSV','创作模式'),fetchRecords()]);
+if(seq!==state.loadSeq)return;if(!/^\d+$/.test(String(count).trim()))throw new Error(t('操作未完成，请重试'));
+state.count=Number(count);state.home={count:state.count,frames:parseCSV(frames),modes:parseCSV(modes)};state.recent=records.slice(0,4);renderHome()}
+function renderHome(){
+const h=state.home;if(!h)return;
+const landscape=h.frames.filter(r=>r[0]===FORMATS[0]).length,portrait=h.frames.filter(r=>r[0]===FORMATS[1]).length;
+$('homeStats').innerHTML=[['作品总数',h.count],['横屏银幕数',landscape],['竖屏银幕数',portrait]].map(([key,n])=>'<div class="stat"><span>'+esc(t(key))+'</span><strong>'+n+'</strong></div>').join('');
+$('modeStats').innerHTML=MODES.map(m=>'<button data-modefilter="'+esc(m)+'">'+esc(t(m))+'<strong>'+h.modes.filter(r=>r[0]===m).length+'</strong></button>').join('');
+renderCards($('recentWorks'),state.recent,true)}
+async function loadGallery(seq){$('galleryWorks').innerHTML=placeholder('读取中…');const records=await fetchRecords();if(seq!==state.loadSeq)return;state.records=records;state.count=records.length;renderGallery();updateRecordControls()}
+function renderFilters(){
+function options(id,all,values){const old=$(id).value;$(id).innerHTML='<option value="">'+esc(t(all))+'</option>'+values.map(v=>'<option value="'+esc(v)+'">'+esc(t(v))+'</option>').join('');$(id).value=old}
+options('galleryMode','全部模式',MODES);options('galleryFormat','全部画幅',FORMATS);options('galleryStyle','全部风格',STYLES);
+const old=$('gallerySort').value;$('gallerySort').innerHTML=['表顺序','时长升序','时长降序'].map((s,i)=>'<option value="'+i+'">'+esc(t(s))+'</option>').join('');$('gallerySort').value=old||'0'}
+function renderGallery(){
+const query=$('gallerySearch').value.trim().toLocaleLowerCase(),mode=$('galleryMode').value,frame=$('galleryFormat').value,style=$('galleryStyle').value;
+let records=state.records.filter(r=>(!query||r['创作要求'].toLocaleLowerCase().includes(query))&&(!mode||r['创作模式']===mode)&&(!frame||r['画幅']===frame)&&(!style||r['艺术风格'].includes(style)));
+const sort=$('gallerySort').value;if(sort==='1'||sort==='2')records=records.slice().sort((a,b)=>(Number(a['时长（秒）'])-Number(b['时长（秒）']))*(sort==='1'?1:-1));
+$('galleryCount').textContent=records.length+' '+t('条作品');renderCards($('galleryWorks'),records.slice(0,state.limit),false);$('galleryMore').hidden=records.length<=state.limit;
+}
+function renderCards(container,records,recent){
+if(!records.length){container.innerHTML=placeholder(recent?'暂无作品':'没有匹配的作品');return}
+container.innerHTML=records.map(r=>{
+const file=extractFile(r['动画文件']),playable=!!file&&!/\.html?$/i.test(file),material=r['素材文件'];
+let screen=playable?'<video preload="metadata" muted playsinline controls src="'+esc(safeLink(file))+'" data-media="'+esc(file)+'"></video><span class="playmark">'+esc(t('可播放'))+'</span>':imageFile(material)?'<img loading="lazy" alt="'+esc(t('参考文件'))+'" src="'+esc(safeLink(material,true))+'"><span class="playmark">'+esc(t('暗房显影中'))+'</span>':'<div class="waiting"><i class="fa-solid fa-film"></i><span>'+esc(t('暗房显影中'))+'</span></div>';
+return '<article class="frame" data-row="'+r.row+'" tabindex="0" aria-label="'+esc(r['创作要求'])+'"><div class="card-screen '+(r['画幅']===FORMATS[1]?'portrait':'')+'">'+screen+'</div><div class="card-body"><h3 class="card-title">'+esc(r['创作要求'])+'</h3><span class="tag">'+esc(t(r['创作模式']))+'</span><div class="tags">'+tags(r['艺术风格']).map(s=>'<span class="tag">'+esc(t(s))+'</span>').join('')+'</div><p>'+esc(t(r['动画语法']||'无动画语法'))+'</p><p>'+esc(r['时长（秒）'])+' '+esc(t('秒'))+' · '+esc(t(r['画幅']))+'</p><p>'+(imageFile(material)?'<img class="material-thumb" alt="" loading="lazy" src="'+esc(safeLink(material,true))+'">':'')+esc(material||t('无素材'))+'</p>'+
+(recent?'':'<div class="card-actions">'+[['play','播放',!playable],['detail','查看详情',false],['edit','编辑',false],['download','下载',!file],['remix','再创作',false],['delete','删除',false]].map(([act,key,disabled])=>'<button class="small" data-action="'+act+'" '+(disabled?'disabled title="'+esc(t('未生成，无法播放或下载'))+'"':'')+'>'+esc(t(key))+'</button>').join('')+'</div>')+'</div></article>'}).join('');
+wireMedia(container);
+}
+function wireMedia(container){container.querySelectorAll('video[data-media]').forEach(video=>video.addEventListener('error',()=>{if(video.dataset.failed)return;video.dataset.failed='1';const retry=document.createElement('button');retry.className='small';retry.textContent=t('媒体加载失败，重试');retry.addEventListener('click',e=>{e.stopPropagation();run(async()=>{const b64=await api('FileToBase64',undefined,video.dataset.media);video.src=String(b64).startsWith('data:')?b64:'data:video/mp4;base64,'+b64;video.load();retry.remove()})});video.parentElement.append(retry)},{once:true}))}
+function modeHint(){return ['复刻提示','风格提示','口播提示','长卷提示','解说提示'][MODES.indexOf($('artForm-mode').value)]||'风格提示'}
+function renderChoices(){
+const mode=$('artForm-mode').value,grammar=$('artForm-grammar').value,format=$('artForm-format').value;
+$('artForm-modeChoices').innerHTML=MODES.map((m,i)=>'<button type="button" class="choice '+(mode===m?'selected':'')+'" data-mode="'+esc(m)+'" aria-pressed="'+(mode===m)+'"><i class="fa-solid '+ICONS[i]+'"></i>'+esc(t(m))+'</button>').join('');
+const q=$('artForm-styleSearch').value.toLocaleLowerCase();const visible=STYLES.filter(s=>s.toLocaleLowerCase().includes(q)||t(s).toLocaleLowerCase().includes(q));
+$('artForm-styleChoices').innerHTML=visible.map(s=>'<button type="button" class="chip '+(state.styles.has(s)?'selected':'')+'" data-style="'+esc(s)+'" aria-pressed="'+state.styles.has(s)+'">'+esc(t(s))+'</button>').join('');
+$('artForm-styles').value=Array.from(state.styles).join(',');
+$('artForm-grammarChoices').innerHTML=GRAMMARS.map(g=>'<button type="button" class="choice '+(g===grammar?'selected':'')+'" data-grammar="'+esc(g)+'" aria-pressed="'+(g===grammar)+'">'+esc(t(g))+'</button>').join('');
+$('artForm-formatChoices').innerHTML=FORMATS.map((f,i)=>'<button type="button" class="choice '+(format===f?'selected':'')+'" data-format="'+esc(f)+'" aria-pressed="'+(format===f)+'"><span class="format-icon '+(i?'vertical':'')+'"></span>'+esc(t(f))+'</button>').join('');
+$('durationPresets').innerHTML=[15,30,60,90].map(n=>'<button type="button" class="small" data-duration="'+n+'">'+n+'</button>').join('');
+$('modeHint').textContent=t(modeHint());$('recordingBar').hidden=!['口播艺术动画','解说动画'].includes(mode);
+$('styleField').hidden=!!mode&&!['艺术风格动画','长卷穿越动画'].includes(mode);
+$('grammarField').hidden=!!mode&&!['口播艺术动画','解说动画'].includes(mode);
+}
+function renderAtlas(){
+$('atlasStyles').innerHTML=GROUPS.map(([group,styles],i)=>'<div class="panel atlas-group"><h2><span class="atlas-number">0'+(i+1)+'</span>'+esc(t(group))+'</h2><div class="chips">'+styles.map(s=>'<button class="chip" data-atlas-style="'+esc(s)+'">'+esc(t(s))+'</button>').join('')+'</div></div>').join('');
+$('atlasGrammars').innerHTML=GRAMMARS.map((g,i)=>'<button data-atlas-grammar="'+esc(g)+'"><i class="fa-solid '+['fa-earth-americas','fa-layer-group','fa-pen','fa-person','fa-font','fa-wave-square','fa-desktop','fa-chart-column','fa-chalkboard-user'][i]+'"></i>'+esc(t(g))+'</button>').join('')}
+function updateRecordControls(){
+$('previousRecord').disabled=state.row<=1||state.busy||state.polling||state.loadingRecord;
+$('nextRecord').disabled=state.row===0||state.row>=state.count||state.busy||state.polling||state.loadingRecord;
+$('newArt').disabled=state.busy||state.polling||state.loadingRecord;
+$('submitArt').textContent=t(state.row>0?'保存修改':'开始制作');$('saveAs').hidden=state.row===0;
+$('submitArt').disabled=state.busy||state.polling||state.loadingRecord||state.record!=='idle';
+$('saveAs').disabled=$('submitArt').disabled;$('artFormFields').disabled=state.busy||state.polling||state.loadingRecord;
+$('rowLabel').textContent=state.row?t('当前记录')+' '+state.row+' / '+state.count:t('新建作品');
+}
+function renderMaterial(){const file=$('artForm-material').value;$('clearMaterial').disabled=!file;
+$('materialPreview').innerHTML=file?(imageFile(file)?'<img alt="'+esc(t('参考文件'))+'" src="'+esc(safeLink(file,true))+'">':'')+'<span>'+esc(file)+'</span> <button type="button" id="artForm-openMaterial" class="small">'+esc(t('浏览器打开'))+'</button>':''}
+function collectForm(){return {'创作要求':$('artForm-request').value.trim(),'创作模式':$('artForm-mode').value,'艺术风格':Array.from(state.styles).join(','),'动画语法':$('artForm-grammar').value,'时长（秒）':Number($('artForm-duration').value),'画幅':$('artForm-format').value,'素材文件':$('artForm-material').value}}
+function validate(data){
+if(!data['创作要求'])throw new Error(t('请填写创作要求'));if(!MODES.includes(data['创作模式']))throw new Error(t('请选择创作模式'));
+if(!Number.isFinite(data['时长（秒）'])||data['时长（秒）']<=0)throw new Error(t('请填写大于0的时长'));
+if(!FORMATS.includes(data['画幅']))throw new Error(t('请选择画幅'));
+if(data['创作模式']==='动画拆解复刻'&&!data['素材文件'])throw new Error(t('复刻模式必须上传参考素材'));
+if(state.record!=='idle')throw new Error(t('请先完成或取消录音'))}
+async function newWork(seed={}){
+if(state.busy||state.polling||state.loadingRecord)throw new Error(t('正在等待成片，表单暂时锁定'));
+if(state.record!=='idle')await callAppBridge({type:'CancelRecordVoice'});
+state.record='idle';state.row=0;state.film='';state.filmFrame='';$('artForm').reset();state.styles=new Set(tags(seed['艺术风格']));
+fillForm(seed);$('formStatus').textContent='';$('pollStatus').textContent='';await navigate('studio');updateRecordControls();
+}
+function fillForm(r){
+$('artForm-request').value=r['创作要求']||'';$('artForm-mode').value=r['创作模式']||'';
+state.styles=new Set(r.styleTags||tags(r['艺术风格']));$('artForm-grammar').value=r['动画语法']||'';
+$('artForm-duration').value=r['时长（秒）']||'';$('artForm-format').value=r['画幅']||'';
+$('artForm-material').value=r['素材文件']||'';$('artForm-styleSearch').value='';
+state.film=r['动画文件']||'';state.filmFrame=r['画幅']||'';
+renderChoices();renderMaterial();updateRecording();renderOutput($('studioOutput'),state.film,state.filmFrame);updateRecordControls();
+}
+async function loadIntoStudio(row){
+if(state.busy||state.polling||state.loadingRecord)throw new Error(t('正在等待成片，表单暂时锁定'));
+if(state.record!=='idle')throw new Error(t('请先完成或取消录音'));
+state.loadingRecord=true;updateRecordControls();
+try{await countRecords();if(row<1||row>state.count)throw new Error(t('操作未完成，请重试'));
+const record=await readRecord(row);state.row=row;fillForm(record);$('formStatus').textContent='';$('pollStatus').textContent='';await navigate('studio');
+}finally{state.loadingRecord=false;updateRecordControls()}}
+function markdown(container,text){
+container.innerHTML='';if(!text)return;
+if(!window.marked||!window.DOMPurify){container.textContent=t('Markdown组件加载失败，请重试');const b=document.createElement('button');b.textContent=t('重试');b.onclick=()=>location.reload();container.append(b);return}
+container.innerHTML=DOMPurify.sanitize(marked.parse(String(text),{gfm:true,breaks:false}));
+container.querySelectorAll('table').forEach(table=>{const wrap=document.createElement('div');wrap.className='table-scroll';table.parentNode.insertBefore(wrap,table);wrap.append(table)});
+container.querySelectorAll('img').forEach(img=>{
+const original=img.getAttribute('src')||'';let file=original;
+try{if(/^https?:\/\//i.test(original)){const url=new URL(original);file=decodeURIComponent(url.pathname.split('/').pop())}}catch{}
+const url=safeLink(file,true);img.src=url;const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.title=t('下载');img.parentNode.insertBefore(a,img);a.append(img);
+});
+container.querySelectorAll('a').forEach(a=>{a.target='_blank';a.rel='noopener noreferrer'});
+if(window.renderMathInElement)renderMathInElement(container,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}],throwOnError:false});
+}
+function renderOutput(container,text,frame){
+const file=extractFile(text),htmlFile=/\.html?$/i.test(file);
+container.innerHTML='<div class="screen '+(frame===FORMATS[1]?'portrait':'')+'">'+(file&&!htmlFile?'<video controls playsinline preload="metadata" src="'+esc(safeLink(file))+'" data-media="'+esc(file)+'"></video>':'<div class="screen-placeholder"><i class="fa-solid fa-film"></i>'+esc(t(text?'暗房显影中':'等待一部新作品'))+'</div>')+'</div>'+
+(htmlFile?'<iframe title="'+esc(t('成片放映'))+'" sandbox="allow-scripts allow-downloads" src="'+esc(safeLink(file))+'"></iframe>':'')+
+(file?'<div class="actions"><button class="small" data-output-open="'+esc(file)+'">'+esc(t('浏览器打开'))+'</button><button class="small" data-output-download="'+esc(file)+'">'+esc(t('下载成片'))+'</button></div>':'')+'<div class="markdown"></div>';
+markdown(container.querySelector('.markdown'),text);wireMedia(container);
+}
+async function submitFilm(forceNew=false){
+if(state.busy||state.polling||state.loadingRecord)return;
+const data=collectForm();try{validate(data)}catch(e){$('formStatus').textContent=e.message;$('formStatus').className='status error';return}
+clearError();state.busy=true;updateRecordControls();$('formStatus').className='status';$('formStatus').textContent=t(state.row&&!forceNew?'正在保存…':'正在提交…');
+const editing=state.row>0&&!forceNew;
+try{
+if(editing){for(const [field,value] of Object.entries(data))await api('SetCellValue',field+'/'+state.row+'/'+value);$('formStatus').textContent=t('修改已保存')}
+else{await api('SubmitRecord',JSON.stringify(data),TABLE);state.row=1;state.count+=1;state.film='';state.filmFrame=data['画幅'];renderOutput($('studioOutput'),'',$('artForm-format').value);$('formStatus').textContent=t('正在等待成片，表单暂时锁定');startPolling()}
+state.records=[];state.home=null;
+}catch(e){$('formStatus').className='status error';$('formStatus').textContent=String(e?.message||e)+(editing?' · '+t('部分字段可能已保存；重试将继续写入当前记录'):'');showError(e,editing?()=>submitFilm(false):null)}
+finally{state.busy=false;updateRecordControls()}
+}
+function startPolling(){
+clearTimeout(state.pollTimer);state.polling=true;const token=++state.pollToken;const start=Date.now();updateRecordControls();
+$('pollStatus').innerHTML='<span class="spinner"></span>'+esc(t('暗房显影中——正在铺陈风格、绘制运镜并合成可播放短片'));
+async function tick(){
+if(token!==state.pollToken)return;const remaining=1800000-(Date.now()-start);
+if(remaining<=0){finish(t('等待超时，请稍后到作品廊查看。不会自动再次提交。'));return}
+let deadline;
+try{
+const result=await Promise.race([api('GetCellValue','动画文件/1'),new Promise((_,reject)=>{deadline=setTimeout(()=>reject(new Error(t('等待超时，请稍后到作品廊查看。不会自动再次提交。'))),remaining)})]);clearTimeout(deadline);
+if(token!==state.pollToken)return;
+if(String(result).trim()){state.film=String(result);renderOutput($('studioOutput'),state.film,state.filmFrame);if(extractFile(result)){finish(t('制作完成'));return}}
+state.pollTimer=setTimeout(tick,3000);
+}catch(e){clearTimeout(deadline);if(token!==state.pollToken)return;finish(t('等待失败，请重试轮询或稍后到作品廊查看'));showError(e,()=>startPolling())}
+}
+function finish(message){state.polling=false;clearTimeout(state.pollTimer);$('pollStatus').textContent=message;$('formStatus').textContent=message;updateRecordControls();run(async()=>{await countRecords();updateRecordControls()})}
+tick();
+}
+function updateRecording(){
+$('recordState').textContent=t(state.record==='idle'?'就绪，可开始录音':state.record==='paused'?'已暂停':'录音中');
+$('recordStart').disabled=state.record!=='idle';$('recordPause').disabled=state.record!=='recording';$('recordContinue').disabled=state.record!=='paused';$('recordCancel').disabled=state.record==='idle';$('recordFinish').disabled=state.record==='idle';updateRecordControls()
+}
+async function recording(action){
+if(state.busy||state.polling)return;state.busy=true;updateRecordControls();
+try{const value=await callAppBridge({type:action});
+if(action==='StartRecordVoice'||action==='ContinueRecordVoice')state.record='recording';
+if(action==='PauseRecordVoice')state.record='paused';if(action==='CancelRecordVoice')state.record='idle';
+if(action==='FinishRecordVoice'){state.record='idle';if(!String(value).trim())throw new Error(t('录音接口已完成，但未返回文件'));$('artForm-material').value=value;renderMaterial()}
+}finally{state.busy=false;updateRecording()}
+}
+let dialogSequence=0;
+function openDialog(title,edge=false,confirm=false){
+const overlay=document.createElement('div');overlay.className='modal-overlay'+(edge?' edge':'');overlay.style.zIndex=2001+state.dialogs.length;
+const id='dialog-'+(++dialogSequence);overlay.innerHTML='<div class="modal '+(confirm?'confirm':'')+'" role="dialog" aria-modal="true" aria-labelledby="'+id+'-title" tabindex="-1"><div class="modal-head"><h2 id="'+id+'-title">'+esc(title)+'</h2><button class="icon" data-close aria-label="'+esc(t('关闭'))+'">×</button></div><div class="dialog-content"></div></div>';
+$('modalRoot').append(overlay);const dialog={overlay,box:overlay.querySelector('.modal'),body:overlay.querySelector('.dialog-content'),focus:document.activeElement};
+state.dialogs.push(dialog);document.body.style.overflow='hidden';overlay.addEventListener('click',e=>{if(e.target===overlay||e.target.closest('[data-close]'))closeDialog(dialog)});dialog.box.focus();return dialog
+}
+function closeDialog(dialog=state.dialogs.at(-1)){
+if(!dialog)return;const index=state.dialogs.indexOf(dialog);if(index<0)return;state.dialogs.splice(index,1);dialog.overlay.remove();if(dialog.onClose)dialog.onClose();
+if(!state.dialogs.length)document.body.style.overflow='';if(dialog.focus?.isConnected)dialog.focus.focus()
+}
+function confirmDelete(){return new Promise(resolve=>{const dialog=openDialog(t('删除'),false,true);let settled=false;dialog.onClose=()=>{if(!settled){settled=true;resolve(false)}};
+dialog.body.innerHTML='<p>'+esc(t('确定删除此作品？此操作不能撤销。'))+'</p><div class="actions"><button class="accent" data-confirm>'+esc(t('删除'))+'</button><button data-cancel>'+esc(t('取消'))+'</button></div>';
+dialog.body.querySelector('[data-confirm]').onclick=()=>{settled=true;closeDialog(dialog);resolve(true)};dialog.body.querySelector('[data-cancel]').onclick=()=>closeDialog(dialog)})}
+async function deleteRecord(row){
+if(state.busy||state.polling)throw new Error(t('正在等待成片，表单暂时锁定'));if(!await confirmDelete())return;
+state.busy=true;updateRecordControls();
+try{await api('DeleteRecord',row.toString());state.dialogs.slice().reverse().forEach(d=>closeDialog(d));state.row=0;state.film='';$('artForm').reset();state.styles.clear();fillForm({});state.home=null;state.records=[];await navigate('gallery');updateRecordControls()}
+finally{state.busy=false;updateRecordControls()}
+}
+async function showDetails(row){
+const dialog=openDialog(t('读取中…'),true);dialog.body.innerHTML=placeholder('读取中…');
+try{
+const record=await readRecord(row);if(!dialog.overlay.isConnected)return;dialog.box.querySelector('h2').textContent=record['创作要求'];
+dialog.body.innerHTML='<dl class="detail-grid">'+FIELDS.slice(1,7).map(f=>'<div class="detail-item"><dt>'+esc(t(f))+'</dt><dd>'+(f==='艺术风格'?(record.styleTags.length?record.styleTags.map(s=>'<span class="tag">'+esc(t(s))+'</span> ').join(''):esc(t('无指定风格'))):esc(f==='创作模式'||f==='画幅'||f==='动画语法'?t(record[f]):record[f]||t('无素材')))+'</dd></div>').join('')+'</dl><div class="detail-material"></div><div class="detail-output"></div><div class="detail-actions actions" style="margin-top:22px"></div>';
+const material=record['素材文件'];if(material)dialog.body.querySelector('.detail-material').innerHTML=(imageFile(material)?'<img style="max-width:100%;max-height:200px" alt="'+esc(t('参考文件'))+'" src="'+esc(safeLink(material,true))+'">':'')+'<button class="small" data-output-open="'+esc(material)+'">'+esc(t('浏览器打开'))+' · '+esc(material)+'</button>';
+renderOutput(dialog.body.querySelector('.detail-output'),record['动画文件'],record['画幅']);
+const actions=dialog.body.querySelector('.detail-actions');
+if(!extractFile(record['动画文件'])){
+for(const label of ['浏览器打开','下载成片']){const button=document.createElement('button');button.textContent=t(label);button.disabled=true;button.title=t('未生成，无法播放或下载');actions.append(button)}
+}
+for(const [label,handler] of [
+['编辑此作',async()=>{await loadIntoStudio(row);closeDialog(dialog)}],
+['另存并重新制作',async()=>{await newWork({...record,'动画文件':''});closeDialog(dialog)}],
+['删除',()=>deleteRecord(row)],['关闭',async()=>closeDialog(dialog)]
+]){const button=document.createElement('button');button.textContent=t(label);button.onclick=()=>run(handler);actions.append(button)}
+}catch(e){if(!dialog.overlay.isConnected)return;dialog.body.textContent=t('加载失败')+': '+String(e?.message||e);const b=document.createElement('button');b.textContent=t('重试');b.onclick=()=>{closeDialog(dialog);run(()=>showDetails(row))};dialog.body.append(b)}
+}
+async function cardAction(event){
+const card=event.target.closest('article[data-row]');if(!card)return;if(event.target.closest('video,audio,[data-media]'))return;
+const action=event.target.closest('[data-action]')?.dataset.action||'detail',row=Number(card.dataset.row);
+const record=[...state.records,...state.recent].find(r=>r.row===row);
+if(action==='play'){const video=card.querySelector('video');if(video){video.muted=false;await video.play()}return}
+if(action==='download'){const file=extractFile(record?.['动画文件']);if(file)external(file,true);return}
+if(action==='detail'){await showDetails(row);return}if(action==='edit'){await loadIntoStudio(row);return}
+if(action==='remix'){const r=await readRecord(row);await newWork({...r,'动画文件':''});return}if(action==='delete')await deleteRecord(row)
+}
+function keyboardVisibility(){
+const viewport=window.visualViewport;
+function reveal(){const active=document.activeElement;if(!active||!active.matches('input:not([type=hidden]),textarea,select'))return;
+const keyboard=Math.max(0,window.innerHeight-(viewport?.height||window.innerHeight));document.documentElement.style.setProperty('--keyboard-space',Math.max(90,keyboard+140)+'px');
+const dialog=active.closest('.modal');if(dialog)dialog.style.paddingBottom=Math.max(50,keyboard+140)+'px';setTimeout(()=>active.scrollIntoView({behavior:'smooth',block:'center'}),120)}
+document.addEventListener('focusin',reveal);viewport?.addEventListener('resize',reveal);document.addEventListener('focusout',()=>setTimeout(()=>{if(!document.activeElement?.matches('input,textarea,select'))document.documentElement.style.setProperty('--keyboard-space','90px')},150));
+}
+function wireEvents(){
+$('brand').onclick=()=>{try{if(typeof parent.closeFullHtml==='function')parent.closeFullHtml(false);else showError(t('此页面由宿主应用打开时支持关闭'))}catch(e){showError(e)}};
+$('menuToggle').onclick=()=>setMenu($('mobileMenu').hidden);document.addEventListener('click',e=>{if(!$('mobileMenu').hidden&&!$('navigation').contains(e.target))setMenu(false)});
+$('languageDesktop').onclick=switchLanguage;$('languageMobile').onclick=switchLanguage;
+document.querySelectorAll('#navTabs,#mobileTabs').forEach(el=>el.addEventListener('click',e=>{const b=e.target.closest('[data-page]');if(b)run(()=>navigate(b.dataset.page))}));
+['homeCreate','galleryCreate','newArt'].forEach(id=>$(id).onclick=()=>run(()=>newWork()));
+['homeGallery','viewAll','studioGallery'].forEach(id=>$(id).onclick=()=>run(()=>navigate('gallery')));
+$('modeStats').onclick=e=>{const b=e.target.closest('[data-modefilter]');if(b){$('galleryMode').value=b.dataset.modefilter;state.limit=12;run(()=>navigate('gallery'))}};
+$('galleryRefresh').onclick=()=>run(()=>navigate('gallery',false));
+['gallerySearch','galleryMode','galleryFormat','galleryStyle','gallerySort'].forEach(id=>$(id).addEventListener(id==='gallerySearch'?'input':'change',()=>{state.limit=12;renderGallery()}));
+$('galleryMore').onclick=()=>{state.limit+=12;renderGallery()};
+['galleryWorks','recentWorks'].forEach(id=>{$(id).addEventListener('click',e=>run(()=>cardAction(e)));$(id).addEventListener('keydown',e=>{if(e.target.matches('article[data-row]')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();run(()=>showDetails(Number(e.target.dataset.row)))}})});
+$('artForm-modeChoices').onclick=e=>{const b=e.target.closest('[data-mode]');if(b)run(async()=>{if(state.record!=='idle'){await callAppBridge({type:'CancelRecordVoice'});state.record='idle';updateRecording()}$('artForm-mode').value=b.dataset.mode;renderChoices()})};
+$('artForm-styleSearch').oninput=renderChoices;
+$('artForm-styleChoices').onclick=e=>{const b=e.target.closest('[data-style]');if(b){const s=b.dataset.style;state.styles.has(s)?state.styles.delete(s):state.styles.add(s);renderChoices()}};
+$('artForm-grammarChoices').onclick=e=>{const b=e.target.closest('[data-grammar]');if(b){$('artForm-grammar').value=$('artForm-grammar').value===b.dataset.grammar?'':b.dataset.grammar;renderChoices()}};
+$('artForm-formatChoices').onclick=e=>{const b=e.target.closest('[data-format]');if(b){$('artForm-format').value=b.dataset.format;state.filmFrame=b.dataset.format;renderChoices();renderOutput($('studioOutput'),state.film,state.filmFrame)}};
+$('durationPresets').onclick=e=>{const b=e.target.closest('[data-duration]');if(b)$('artForm-duration').value=b.dataset.duration};
+document.querySelectorAll('[data-upload]').forEach(button=>button.onclick=()=>run(async()=>{if(state.record!=='idle')throw new Error(t('请先完成或取消录音'));state.busy=true;updateRecordControls();try{const file=await callAppBridge({type:button.dataset.upload});if(String(file).trim()){$('artForm-material').value=file;renderMaterial()}}finally{state.busy=false;updateRecordControls()}}));
+$('clearMaterial').onclick=()=>{$('artForm-material').value='';renderMaterial()};$('materialPreview').onclick=e=>{if(e.target.closest('#artForm-openMaterial'))external($('artForm-material').value)};
+[['recordStart','StartRecordVoice'],['recordPause','PauseRecordVoice'],['recordContinue','ContinueRecordVoice'],['recordCancel','CancelRecordVoice'],['recordFinish','FinishRecordVoice']].forEach(([id,action])=>$(id).onclick=()=>run(()=>recording(action)));
+$('artForm').onsubmit=e=>{e.preventDefault();run(()=>submitFilm(false))};$('saveAs').onclick=()=>run(()=>submitFilm(true));
+$('previousRecord').onclick=()=>run(()=>loadIntoStudio(state.row-1));$('nextRecord').onclick=()=>run(()=>loadIntoStudio(state.row+1));
+$('atlasStyles').onclick=e=>{const b=e.target.closest('[data-atlas-style]');if(b)run(()=>newWork({'创作模式':'艺术风格动画','艺术风格':b.dataset.atlasStyle}))};
+$('atlasGrammars').onclick=e=>{const b=e.target.closest('[data-atlas-grammar]');if(b)run(()=>newWork({'创作模式':'解说动画','动画语法':b.dataset.atlasGrammar}))};
+document.addEventListener('click',e=>{const open=e.target.closest('[data-output-open]'),download=e.target.closest('[data-output-download]');if(open)external(open.dataset.outputOpen);if(download)external(download.dataset.outputDownload,true)});
+$('errorRetry').onclick=()=>{const retry=state.retry;clearError();if(retry)run(retry)};$('errorDismiss').onclick=clearError;
+document.addEventListener('keydown',e=>{
+if(e.key==='Escape'){if(state.dialogs.length)closeDialog();else setMenu(false)}
+if(e.key==='Tab'&&state.dialogs.length){const dialog=state.dialogs.at(-1);const items=Array.from(dialog.box.querySelectorAll('button:not(:disabled),input:not(:disabled),select:not(:disabled),textarea:not(:disabled),a[href],video[controls],iframe,[tabindex="0"]')).filter(el=>el.getClientRects().length);if(!items.length){e.preventDefault();dialog.box.focus();return}const first=items[0],last=items.at(-1);if(e.shiftKey&&(document.activeElement===first||document.activeElement===dialog.box)){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}
+});
+window.addEventListener('resize',fitNav);new ResizeObserver(fitNav).observe($('navigation'));keyboardVisibility();
+}
+async function initialize(){
+state.lang=detectLanguage();wireEvents();updateLanguage();
+await run(async()=>{const mode=await callAppBridge({type:'模式'});document.documentElement.dataset.theme=String(mode).includes('亮色')?'light':'dark'},async()=>{const mode=await callAppBridge({type:'模式'});document.documentElement.dataset.theme=String(mode).includes('亮色')?'light':'dark'});
+await navigate('home',false);
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>{(async()=>{await initialize()})()},{once:true})}else{(async()=>{await initialize()})()}
+</script>
+</body>
+</html>
